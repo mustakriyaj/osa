@@ -1,16 +1,16 @@
-package com.project.osa.model;
+package com.project.osa.dto;
 
-import lombok.*;
-
-import javax.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @RequiredArgsConstructor
 @Data
 @Getter
 @Setter
-public class Customer {
+public class CustomerDto {
 
-    @Id
     private String id;
 
     private String firstName;
