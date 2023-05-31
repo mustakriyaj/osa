@@ -28,6 +28,7 @@ public class CategoryController {
 
     @GetMapping("/showAllCategory")
     public ResponseEntity<List<Category>> showAllCategory() {
-        return ResponseEntity.ok(this.categoryService.showAllCategory());
+        List<Category> temp = this.categoryService.showAllCategory();
+        return ResponseEntity.ok(temp);
     }
 }

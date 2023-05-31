@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
+@Entity
 @RequiredArgsConstructor
 @Data
 @Getter
@@ -11,7 +12,8 @@ import javax.persistence.*;
 public class Customer {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     private String firstName;
 

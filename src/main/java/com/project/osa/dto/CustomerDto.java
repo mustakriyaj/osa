@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class CustomerDto {
 
-    private String id;
+    private Integer id;
 
     private String firstName;
 

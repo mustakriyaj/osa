@@ -12,20 +12,19 @@ import javax.persistence.*;
 @Data
 @Getter
 @Setter
-public class Product {
+public class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    private String productName;
-
-    private String price;
-
-    private String manufacturer;
+    private Long id;
 
     @ManyToOne
-    //@JoinColumn(name="id", nullable=false)
-    @JoinColumn(name = "category_id")
-    private Category category;
+    private Cart cart;
+
+    @ManyToOne
+    private Product product;
+
+    private int quantity;
+
 }
+

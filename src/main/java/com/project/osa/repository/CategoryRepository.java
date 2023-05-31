@@ -1,7 +1,9 @@
 package com.project.osa.repository;
 
 import com.project.osa.model.Category;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface CategoryRepository extends MongoRepository<Category, String> {
+@Repository
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
 }

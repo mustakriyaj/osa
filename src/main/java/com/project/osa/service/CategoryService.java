@@ -23,6 +23,7 @@ public class CategoryService {
     }
 
     public List<Category> showAllCategory() {
+
         return this.categoryRepository.findAll();
     }
 }
