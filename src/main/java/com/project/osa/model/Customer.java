@@ -1,8 +1,13 @@
 package com.project.osa.model;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @RequiredArgsConstructor
@@ -34,4 +39,7 @@ public class Customer {
     private String country;
 
     private String pinCode;
+
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    private Cart cart;
 }
