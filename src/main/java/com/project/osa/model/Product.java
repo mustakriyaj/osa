@@ -24,6 +24,9 @@ public class Product {
 
     private String manufacturer;
 
+    @Lob
+    private byte[] image;
+
     @ManyToOne
     //@JoinColumn(name="id", nullable=false)
     @JoinColumn(name = "category_id")
