@@ -82,7 +82,7 @@ public class ProductControllerTests {
         Mockito.when(productService.getProductById(productId)).thenReturn(product);
 
         // Perform the request
-        ResponseEntity<byte[]> response = productController.getProduct(productId);
+        ResponseEntity<byte[]> response = productController.getProductImg(productId);
 
         // Verify the response
         assertEquals(HttpStatus.OK, response.getStatusCode());

@@ -5,11 +5,13 @@ import com.project.osa.model.Category;
 import com.project.osa.model.Product;
 import com.project.osa.repository.CategoryRepository;
 import com.project.osa.repository.ProductRepository;
+import org.aspectj.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -40,6 +42,12 @@ public class ProductService {
 
     public Product getProductById(Integer productId) {
         Optional<Product> optionalProduct = this.productRepository.findById(productId);
-        return optionalProduct.get();
+        Product product = optionalProduct.get();
+        product.setImage(new byte[0]);
+        return product;
+    }
+
+    public List<Product> getAllProducts() {
+        return this.productRepository.findAll();
     }
 }

@@ -2,7 +2,6 @@ package com.project.osa.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.osa.dto.ProductDto;
-import com.project.osa.model.Category;
 import com.project.osa.model.Product;
 import com.project.osa.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 public class ProductController {
@@ -30,11 +30,11 @@ public class ProductController {
                                               @RequestPart("data") String data) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         ProductDto productDto = objectMapper.readValue(data, ProductDto.class);
-        return ResponseEntity.ok(this.productService.addProduct(productDto, image));
+        return new ResponseEntity<>(this.productService.addProduct(productDto, image), HttpStatus.CREATED);
     }
 
     @GetMapping("/getProductImage/{productId}")
-    public ResponseEntity<byte[]> getProduct(@PathVariable Integer productId) {
+    public ResponseEntity<byte[]> getProductImg(@PathVariable Integer productId) {
         Product product = productService.getProductById(productId);
 
         if (product == null) {
@@ -46,5 +46,15 @@ public class ProductController {
         headers.setContentLength(product.getImage().length);
 
         return new ResponseEntity<>(product.getImage(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/getProductData/{productId}")
+    public ResponseEntity<Product> getProduct(@PathVariable Integer productId) {
+        return new ResponseEntity<>(productService.getProductById(productId), HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllProducts")
+    public ResponseEntity<List<Product>> listAllProducts() {
+        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
 }
